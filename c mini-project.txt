@@ -1,0 +1,776 @@
+#include<stdio.h>
+#include<conio.h>
+#include<string.h>
+
+struct details
+{
+    char name[100][50];
+    char add[100][100];
+    float eng[100];
+    float mat[100];
+    float phy[100];
+    float chem[100];
+    float lang[100];
+    long phone[100];
+    char dad_name[100][50];
+    char mom_name[100][50];
+    char dad_prof[100][50];
+    char mom_prof[100][50];
+    double dad_sal[100];
+    double mom_sal[100];
+    char sibis[100][50];
+    long dad_num[100];
+    long mom_num[100];
+    float cutoff[100];
+    char boy_host[100][50];
+    char girl_host[100][50];
+    char day_sch[100][50];
+    char eee[100][50];
+    char ece[100][50];
+    char ds[100][50];
+    char cse[100][50];
+    char btechit[100][50];
+    char mech[100][50];
+    char civil[100][50];
+    char metro[100][50];
+    int eeecount;
+    int ececount;
+    int csecount;
+    int dscount;
+    int btechitcount;
+    int civilcount;
+    int mechcount;
+    int metrocount;
+    int girlhostcount;
+    int boyhostcount;
+}s;
+
+int dept_eee(char eeename[50]);
+int dept_ece(char ecename[50]);
+int dept_cse(char cscname[50]);
+int dept_ds(char dsname[50]);
+int dept_btechit(char btechitname[50]);
+int dept_civil(char civilname[50]);
+int dept_mech(char mechname[50]);
+int dept_metro(char metroname[50]);
+int girlhostelfun(char name[100]);
+int boyhostelfun(char name[100]);
+int printfinallist();
+int printgirlhostelers();
+int printboyhostelers();
+
+int main()
+{
+    int i,ch,n,q,gen,j;
+    FILE *a,*b,*c,*d,*e,*f,*g,*h;
+    for(i=0;i<(8*80);i++)
+    {
+        printf("\n reading the details");
+        printf("\n enter you name");
+        scanf("\n %s",&s.name[i]);
+        printf("\n enter the 12th phy mark");
+        scanf("\n %f",&s.phy[i]);
+        printf("\n enter the 12th chemistry mark");
+        scanf("\n %f",&s.chem[i]);
+        printf("\n enter the 12th mathematics mark");
+        scanf("\n %f",&s.mat[i]);
+        s.cutoff[i]=((s.chem[i]+s.phy[i])/2)+s.mat[i];
+        if(s.cutoff[i]>=190)
+        {
+            printf("\n enter the department you wanted to join");
+            printf("\n enter 1 to join into the EEE department");
+            printf("\n enter 2 to join into the ECE department");
+            printf("\n enter 3 to join into the CSC department");
+            printf("\n enter 4 to join into the DS department");
+            printf("\n enter 5 to join into the B.TECH IT department");
+            printf("\n enter 6 to join into the CIVIL department");
+            printf("\n enter 7 to join into the MECHANICAL department");
+            printf("\n enter 8 to join into the MECHATRONICS department");
+            printf("\n enter your choice");
+            scanf("\n %d",&ch);
+            switch(ch)
+            {
+                case 1:
+                {
+                    if((dept_eee(s.name[i]))==0)
+                    {
+                        printf("\n sorry for the inconvenience! the seats are full");
+                        return 0;
+                    }
+                    else
+                    {
+                          strcpy(s.eee[i],s.name[i]);
+                    }
+
+                }
+                break;
+                case 2:
+                {
+                    if(dept_ece(s.name[i])==0)
+                    {
+                        printf("\n sorry for the inconvenience! the seats are full");
+                        return 0;
+                    }
+                       else
+                    {
+                        strcpy(s.ece[i],s.name[i]);
+                    }
+                }
+                break;
+                case 3:
+                {
+                    if(dept_cse(s.name[i])==0)
+                    {
+                        printf("\n sorry for the inconvenience! the seats are full");
+                        return 0;
+                    }
+                       else
+                    {
+                        strcpy(s.cse[i],s.name[i]);
+                    }
+
+                }
+                break;
+                case 4:
+                {
+                    if(dept_ds(s.name[i])==0)
+                    {
+                        printf("\n sorry for the inconvenience! the seats are full");
+                        return 0;
+                    }
+                       else
+                    {
+                        strcpy(s.ds[i],s.name[i]);
+                    }
+
+                }
+                break;
+                case 5:
+                {
+                    if(dept_btechit(s.name[i])==0)
+                    {
+                        printf("\n sorry for the inconvenience! the seats are full");
+                        return 0;
+                    }
+                       else
+                    {
+                        strcpy(s.btechit[i],s.name[i]);
+                    }
+
+                }
+                break;
+                case 6:
+                {
+                    if(dept_civil(s.name[i])==0)
+                    {
+                        printf("\n sorry for the inconvenience! the seats are full");
+                        return 0;
+                    }
+                       else
+                    {
+                        strcpy(s.civil[i],s.name[i]);
+                    }
+
+                }
+                break;
+                case 7:
+                {
+                    if(dept_mech(s.name[i])==0)
+                    {
+                        printf("\n sorry for the inconvenience! the seats are full");
+                        return 0;
+                    }
+                      else
+                    {
+                        strcpy(s.mech[i],s.name[i]);
+                    }
+                }
+                break;
+                case 8:
+                {
+                    if(dept_metro(s.name[i])==0)
+                    {
+                        printf("\n sorry for the inconvenience! the seats are full");
+                        return 0;
+                    }
+                       else
+                    {
+                        strcpy(s.metro[i],s.name[i]);
+                    }
+                }
+                break;
+                default:
+                printf("\n invalid department");
+            }
+            printf("\n enter 1 if u would need hostel facilities and 0 if you wouldn't");
+             scanf("%d",&q);
+            if(q==1)
+            {
+                printf("\n enter 1 for female and 2 for male");
+                scanf ("%d",&gen);
+                if(gen==1)
+                  {
+                    if(girlhostelfun(s.name[i])==0)
+                        printf("\n sorry no seats available in hostel");
+                   else
+                    printf("\n hostel seat allocated");
+                  }
+                else
+                   {
+                    if(boyhostelfun(s.name[i])==0)
+                    printf("\n sorry no seats available in hostel");
+                    else
+                    printf("\n hostel seat allocated");
+                   }
+
+            }
+            else
+            strcpy(s.day_sch[i],s.name[i]);
+
+            printf("\n reading the personal details");
+            printf("\n enter your residence");
+            scanf("%s",&s.add[i]);
+            printf("\n enter your personal mobile number");
+            scanf("ld",&s.phone[i]);
+            printf("\n enter your father's name");
+            scanf("%s",&s.dad_name[i]);
+            printf("\n enter your mother's name");
+            scanf("%s",&s.mom_name[i]);
+            printf("\n enter your father's profession");
+            scanf("%s",&s.dad_prof[i]);
+            printf("\n enter your mother's profession");
+            scanf("%s",&s.mom_prof[i]);
+            printf("\n enter your father's salary per month");
+            scanf("%lf",&s.dad_sal[i]);
+            printf("\n enter your mother's salary per month");
+            scanf("%lf",&s.mom_sal[i]);
+            printf("\n if you do have sibilings mention their name and age if not make it 'nil'");
+            scanf("%s",&s.sibis[i]);
+            printf("\n enter your father's phone number");
+            scanf("%ld",&s.dad_num[i]);
+            printf("\n enter your mother's phone number");
+            scanf("%ld",&s.mom_num[i]);
+
+            switch(ch)
+            {
+                case 1:
+                {
+                    a=fopen("C:\\Users\\HP\\Documents\\eeestudentdetails.txt","w");
+                         fprintf(a,"\n %s",s.eee[i]);
+                         if(gen==1)
+                         {
+                             fprintf(a,"\n female");
+                         }
+                         if(gen==2)
+                         {
+                             fprintf(a,"\n male");
+                         }
+                         fprintf(a,"\n department: EEE");
+                         fprintf(a,"\n roll number: 62EEE%d",(i+1));
+                         fprintf(a,"\n english mark in 12th: %f",s.eng[i]);
+                         fprintf(a,"\n mathematics  mark in 12th: %f",s.mat[i]);
+                         fprintf(a,"\n physics mark in 12th: %f",s.phy[i]);
+                         fprintf(a,"\n chemistry mark in 12th: %f",s.chem[i]);
+                         fprintf(a,"\n language mark in 12th: %f",s.lang[i]);
+                         if(q==1)
+                         {
+                             fprintf(a,"\n hosteler");
+                         }
+                         else
+                         {
+                             fprintf(a,"\n day-scholar");
+                         }
+                         fprintf(a,"personal details");
+                         fprintf(a,"\n reading the personal details");
+                         fprintf(a,"\n residence:%s",s.add[i]);
+                         fprintf(a,"\n father's name: %s", s.dad_name[i]);
+                         fprintf(a,"\n mother's name: %s", s.mom_name[i]);
+                         fprintf(a,"\n father's profession: %s", s.dad_prof[i]);
+                         fprintf(a,"\n mother's profession: %s", s.mom_prof[i]);
+                         fprintf(a,"\n father's salary per month: %lf", s.dad_sal[i]);
+                         fprintf(a,"\n mother's salary per month: %lf", s.mom_sal[i]);
+                         fprintf(a,"\n sibilings name and age: %s", s.sibis[i]);
+                         fprintf(a,"\n father's phone number: %ld", s.dad_num[i]);
+                         fprintf(a,"\n mother's phone number: %ld", s.mom_num[i]);
+
+                }
+                break;
+                case 2:
+                    {
+                        b=fopen("C:\\Users\\HP\\Documents\\ecestudentdetails.txt","w");
+                         fprintf(b,"\n %s",s.ece[i]);
+                         if(gen==1)
+                         {
+                             fprintf(b,"\n female");
+                         }
+                         if(gen==2)
+                         {
+                             fprintf(b,"\n male");
+                         }
+                         fprintf(b,"\n department: ECE");
+                         fprintf(b,"\n roll number: 62ECE%d",(i+1));
+                         fprintf(b,"\n english mark in 12th: %f",s.eng[i]);
+                         fprintf(b,"\n mathematics  mark in 12th: %f",s.mat[i]);
+                         fprintf(b,"\n physics mark in 12th: %f",s.phy[i]);
+                         fprintf(b,"\n chemistry mark in 12th: %f",s.chem[i]);
+                         fprintf(b,"\n language mark in 12th: %f",s.lang[i]);
+                         if(q==1)
+                         {
+                             fprintf(b,"\n hosteler");
+                         }
+                         else
+                         {
+                             fprintf(b,"\n day-scholar");
+                         }
+                         fprintf(b,"personal details");
+                         fprintf(b,"\n reading the personal details");
+                         fprintf(b,"\n residence:%s",s.add[i]);
+                         fprintf(b,"\n father's name: %s", s.dad_name[i]);
+                         fprintf(b,"\n mother's name: %s", s.mom_name[i]);
+                         fprintf(b,"\n father's profession: %s", s.dad_prof[i]);
+                         fprintf(b,"\n mother's profession: %s", s.mom_prof[i]);
+                         fprintf(b,"\n father's salary per month: %lf", s.dad_sal[i]);
+                         fprintf(b,"\n mother's salary per month: %lf", s.mom_sal[i]);
+                         fprintf(b,"\n sibilings name and age: %s", s.sibis[i]);
+                         fprintf(b,"\n father's phone number: %ld", s.dad_num[i]);
+                         fprintf(b,"\n mother's phone number: %ld", s.mom_num[i]);
+
+
+                    }
+                    break;
+                    case 3:
+                    {
+                        c=fopen("C:\\Users\\HP\\Documents\\csestudentdetails.txt","w");
+                         fprintf(c,"\n %s",s.cse[i]);
+                         if(gen==1)
+                         {
+                             fprintf(c,"\n female");
+                         }
+                         if(gen==2)
+                         {
+                             fprintf(c,"\n male");
+                         }
+                         fprintf(c,"\n department: CSE");
+                         fprintf(c,"\n roll number: 62CSE%d",(i+1));
+                         fprintf(c,"\n english mark in 12th: %f",s.eng[i]);
+                         fprintf(c,"\n mathematics  mark in 12th: %f",s.mat[i]);
+                         fprintf(c,"\n physics mark in 12th: %f",s.phy[i]);
+                         fprintf(c,"\n chemistry mark in 12th: %f",s.chem[i]);
+                         fprintf(c,"\n language mark in 12th: %f",s.lang[i]);
+                         if(q==1)
+                         {
+                             fprintf(c,"\n hosteler");
+                         }
+                         else
+                         {
+                             fprintf(c,"\n day-scholar");
+                         }
+                         fprintf(c,"personal details");
+                         fprintf(c,"\n reading the personal details");
+                         fprintf(c,"\n residence:%s",s.add[i]);
+                         fprintf(c,"\n father's name: %s", s.dad_name[i]);
+                         fprintf(c,"\n mother's name: %s", s.mom_name[i]);
+                         fprintf(c,"\n father's profession: %s", s.dad_prof[i]);
+                         fprintf(c,"\n mother's profession: %s", s.mom_prof[i]);
+                         fprintf(c,"\n father's salary per month: %lf", s.dad_sal[i]);
+                         fprintf(c,"\n mother's salary per month: %lf", s.mom_sal[i]);
+                         fprintf(c,"\n sibilings name and age: %s", s.sibis[i]);
+                         fprintf(c,"\n father's phone number: %ld", s.dad_num[i]);
+                         fprintf(c,"\n mother's phone number: %ld", s.mom_num[i]);
+
+
+                    }
+                    break;
+                    case 4:
+                    {
+                        d=fopen("C:\\Users\\HP\\Documents\\dsstudentdetails.txt","w");
+                         fprintf(d,"\n %s",s.ds[i]);
+                         if(gen==1)
+                         {
+                             fprintf(d,"\n female");
+                         }
+                         if(gen==2)
+                         {
+                             fprintf(d,"\n male");
+                         }
+                         fprintf(d,"\n department: DS");
+                         fprintf(d,"\n roll number: 62DS%d",(i+1));
+                         fprintf(d,"\n english mark in 12th: %f",s.eng[i]);
+                         fprintf(d,"\n mathematics  mark in 12th: %f",s.mat[i]);
+                         fprintf(d,"\n physics mark in 12th: %f",s.phy[i]);
+                         fprintf(d,"\n chemistry mark in 12th: %f",s.chem[i]);
+                         fprintf(d,"\n language mark in 12th: %f",s.lang[i]);
+                         if(q==1)
+                         {
+                             fprintf(d,"\n hosteler");
+                         }
+                         else
+                         {
+                             fprintf(d,"\n day-scholar");
+                         }
+                         fprintf(d,"personal details");
+                         fprintf(d,"\n reading the personal details");
+                         fprintf(d,"\n residence:%s",s.add[i]);
+                         fprintf(d,"\n father's name: %s", s.dad_name[i]);
+                         fprintf(d,"\n mother's name: %s", s.mom_name[i]);
+                         fprintf(d,"\n father's profession: %s", s.dad_prof[i]);
+                         fprintf(d,"\n mother's profession: %s", s.mom_prof[i]);
+                         fprintf(d,"\n father's salary per month: %lf", s.dad_sal[i]);
+                         fprintf(d,"\n mother's salary per month: %lf", s.mom_sal[i]);
+                         fprintf(d,"\n sibilings name and age: %s", s.sibis[i]);
+                         fprintf(d,"\n father's phone number: %ld", s.dad_num[i]);
+                         fprintf(d,"\n mother's phone number: %ld", s.mom_num[i]);
+
+
+                    }
+                    break;
+                    case 5:
+                    {
+                        e=fopen("C:\\Users\\HP\\Documents\\btechitstudentdetails.txt","w");
+                         fprintf(e,"\n %s",s.btechit[i]);
+                         if(gen==1)
+                         {
+                             fprintf(e,"\n female");
+                         }
+                         if(gen==2)
+                         {
+                             fprintf(e,"\n male");
+                         }
+                         fprintf(e,"\n department: B.TECHIT");
+                         fprintf(e,"\n roll number: 62BTECHIT%d",(i+1));
+                         fprintf(e,"\n english mark in 12th: %f",s.eng[i]);
+                         fprintf(e,"\n mathematics  mark in 12th: %f",s.mat[i]);
+                         fprintf(e,"\n physics mark in 12th: %f",s.phy[i]);
+                         fprintf(e,"\n chemistry mark in 12th: %f",s.chem[i]);
+                         fprintf(e,"\n language mark in 12th: %f",s.lang[i]);
+                         if(q==1)
+                         {
+                             fprintf(e,"\n hosteler");
+                         }
+                         else
+                         {
+                             fprintf(e,"\n day-scholar");
+                         }
+                         fprintf(e,"personal details");
+                         fprintf(e,"\n reading the personal details");
+                         fprintf(e,"\n residence:%s",s.add[i]);
+                         fprintf(e,"\n father's name: %s", s.dad_name[i]);
+                         fprintf(e,"\n mother's name: %s", s.mom_name[i]);
+                         fprintf(e,"\n father's profession: %s", s.dad_prof[i]);
+                         fprintf(e,"\n mother's profession: %s", s.mom_prof[i]);
+                         fprintf(e,"\n father's salary per month: %lf", s.dad_sal[i]);
+                         fprintf(e,"\n mother's salary per month: %lf", s.mom_sal[i]);
+                         fprintf(e,"\n sibilings name and age: %s", s.sibis[i]);
+                         fprintf(e,"\n father's phone number: %ld", s.dad_num[i]);
+                         fprintf(e,"\n mother's phone number: %ld", s.mom_num[i]);
+
+
+                    }
+                    break;
+                    case 6:
+                    {
+                        f=fopen("C:\\Users\\HP\\Documents\\civilstudentdetails.txt","w");
+                         fprintf(f,"\n %s",s.civil[i]);
+                         if(gen==1)
+                         {
+                             fprintf(f,"\n female");
+                         }
+                         if(gen==2)
+                         {
+                             fprintf(f,"\n male");
+                         }
+                         fprintf(f,"\n department: CIVIL");
+                         fprintf(f,"\n roll number: 62CIVIL%d",(i+1));
+                         fprintf(f,"\n english mark in 12th: %f",s.eng[i]);
+                         fprintf(f,"\n mathematics  mark in 12th: %f",s.mat[i]);
+                         fprintf(f,"\n physics mark in 12th: %f",s.phy[i]);
+                         fprintf(f,"\n chemistry mark in 12th: %f",s.chem[i]);
+                         fprintf(f,"\n language mark in 12th: %f",s.lang[i]);
+                         if(q==1)
+                         {
+                             fprintf(f,"\n hosteler");
+                         }
+                         else
+                         {
+                             fprintf(f,"\n day-scholar");
+                         }
+                         fprintf(f,"personal details");
+                         fprintf(f,"\n reading the personal details");
+                         fprintf(f,"\n residence:%s",s.add[i]);
+                         fprintf(f,"\n father's name: %s", s.dad_name[i]);
+                         fprintf(f,"\n mother's name: %s", s.mom_name[i]);
+                         fprintf(f,"\n father's profession: %s", s.dad_prof[i]);
+                         fprintf(f,"\n mother's profession: %s", s.mom_prof[i]);
+                         fprintf(f,"\n father's salary per month: %lf", s.dad_sal[i]);
+                         fprintf(f,"\n mother's salary per month: %lf", s.mom_sal[i]);
+                         fprintf(f,"\n sibilings name and age: %s", s.sibis[i]);
+                         fprintf(f,"\n father's phone number: %ld", s.dad_num[i]);
+                         fprintf(f,"\n mother's phone number: %ld", s.mom_num[i]);
+
+
+                    }
+                    break;
+                    case 7:
+                    {
+                        g=fopen("C:\\Users\\HP\\Documents\\mechstudentdetails.txt","w");
+                         fprintf(g,"\n %s",s.mech[i]);
+                         if(gen==1)
+                         {
+                             fprintf(g,"\n female");
+                         }
+                         if(gen==2)
+                         {
+                             fprintf(g,"\n male");
+                         }
+                         fprintf(g,"\n department: MECH");
+                         fprintf(g,"\n roll number: 62MECH%d",(i+1));
+                         fprintf(g,"\n english mark in 12th: %f",s.eng[i]);
+                         fprintf(g,"\n mathematics  mark in 12th: %f",s.mat[i]);
+                         fprintf(g,"\n physics mark in 12th: %f",s.phy[i]);
+                         fprintf(g,"\n chemistry mark in 12th: %f",s.chem[i]);
+                         fprintf(g,"\n language mark in 12th: %f",s.lang[i]);
+                         if(q==1)
+                         {
+                             fprintf(g,"\n hosteler");
+                         }
+                         else
+                         {
+                             fprintf(g,"\n day-scholar");
+                         }
+                         fprintf(g,"personal details");
+                         fprintf(g,"\n reading the personal details");
+                         fprintf(g,"\n residence:%s",s.add[i]);
+                         fprintf(g,"\n father's name: %s", s.dad_name[i]);
+                         fprintf(g,"\n mother's name: %s", s.mom_name[i]);
+                         fprintf(g,"\n father's profession: %s", s.dad_prof[i]);
+                         fprintf(g,"\n mother's profession: %s", s.mom_prof[i]);
+                         fprintf(g,"\n father's salary per month: %lf", s.dad_sal[i]);
+                         fprintf(g,"\n mother's salary per month: %lf", s.mom_sal[i]);
+                         fprintf(g,"\n sibilings name and age: %s", s.sibis[i]);
+                         fprintf(g,"\n father's phone number: %ld", s.dad_num[i]);
+                         fprintf(g,"\n mother's phone number: %ld", s.mom_num[i]);
+
+
+                    }
+                    break;
+                    case 8:
+                    {
+                        h=fopen("C:\\Users\\HP\\Documents\\metrostudentdetails.txt","w");
+                         fprintf(h,"\n %s",s.metro[i]);
+                         if(gen==1)
+                         {
+                             fprintf(h,"\n female");
+                         }
+                         if(gen==2)
+                         {
+                             fprintf(h,"\n male");
+                         }
+                         fprintf(h,"\n department: MECHATRONICS");
+                         fprintf(h,"\n roll number: 62METRO%d",(i+1));
+                         fprintf(h,"\n english mark in 12th: %f",s.eng[i]);
+                         fprintf(h,"\n mathematics  mark in 12th: %f",s.mat[i]);
+                         fprintf(h,"\n physics mark in 12th: %f",s.phy[i]);
+                         fprintf(h,"\n chemistry mark in 12th: %f",s.chem[i]);
+                         fprintf(h,"\n language mark in 12th: %f",s.lang[i]);
+                         if(q==1)
+                         {
+                             fprintf(h,"\n hosteler");
+                         }
+                         else
+                         {
+                             fprintf(h,"\n day-scholar");
+                         }
+                         fprintf(h,"personal details");
+                         fprintf(h,"\n reading the personal details");
+                         fprintf(h,"\n residence:%s",s.add[i]);
+                         fprintf(h,"\n father's name: %s", s.dad_name[i]);
+                         fprintf(h,"\n mother's name: %s", s.mom_name[i]);
+                         fprintf(h,"\n father's profession: %s", s.dad_prof[i]);
+                         fprintf(h,"\n mother's profession: %s", s.mom_prof[i]);
+                         fprintf(h,"\n father's salary per month: %lf", s.dad_sal[i]);
+                         fprintf(h,"\n mother's salary per month: %lf", s.mom_sal[i]);
+                         fprintf(h,"\n sibilings name and age: %s", s.sibis[i]);
+                         fprintf(h,"\n father's phone number: %ld", s.dad_num[i]);
+                         fprintf(h,"\n mother's phone number: %ld", s.mom_num[i]);
+                    }
+                    break;
+
+        }
+        }
+        else
+        {
+            printf("\n sorry! your cutoff is not sufficient");
+            i--;
+            continue;
+        }
+    }
+    printfinallist();
+    printgirlhostelers();
+    printboyhostelers();
+}
+
+int dept_eee(char eeename[50])
+{
+    if(s.eeecount<79)
+    {
+        strcpy(s.eee[s.eeecount],eeename);
+        s.eeecount++;
+    }
+    else
+    return 0;
+}
+
+int dept_ece(char ecename[50])
+{
+    if(s.ececount<79)
+    {
+        strcpy(s.ece[s.ececount],ecename);
+        s.ececount++;
+    }
+    else
+    return 0;
+}
+
+int dept_cse(char csename[50])
+{
+    if(s.csecount<79)
+    {
+        strcpy(s.cse[s.csecount],csename);
+        s.csecount++;
+    }
+    else
+    return 0;
+}
+
+int dept_ds(char dsname[50])
+{
+    if(s.dscount<79)
+    {
+        strcpy(s.ds[s.dscount],dsname);
+        s.dscount++;
+    }
+    else
+    return 0;
+}
+
+int dept_btechit(char btechitname[50])
+{
+    if(s.btechitcount<79)
+    {
+        strcpy(s.btechit[s.btechitcount],btechitname);
+        s.btechitcount++;
+    }
+    else
+    return 0;
+}
+
+int dept_civil(char civilname[50])
+{
+    if(s.civilcount<79)
+    {
+        strcpy(s.civil[s.civilcount],civilname);
+        s.civilcount++;
+    }
+    else
+    return 0;
+}
+
+int dept_mech(char mechname[50])
+{
+    if(s.mechcount<79)
+    {
+        strcpy(s.mech[s.mechcount],mechname);
+        s.mechcount++;
+    }
+    else
+    return 0;
+}
+
+int dept_metro(char metroname[50])
+{
+    if(s.metrocount<79)
+    {
+        strcpy(s.metro[s.metrocount],metroname);
+        s.metrocount++;
+    }
+    else
+    return 0;
+}
+
+int girlhostelfun(char name[100])
+{
+if(s.girlhostcount<299)
+    {
+        strcpy(s.girl_host[s.girlhostcount],name);
+        return 1;
+    }
+else
+    return 0;
+}
+
+int boyhostelfun(char name[100])
+{
+if(s.boyhostcount<299)
+    {
+        strcpy(s.boy_host[s.boyhostcount],name);
+        return 1;
+    }
+else
+    return 0;
+}
+
+int printfinallist()
+{
+    int i=0;
+    FILE *peee,*pece,*pcse,*pds,*pbtechit,*pcivil,*pmech,*pmetro;
+
+    peee=fopen("C:\\Users\\HP\\Documents\\eeestudents.txt","w");
+    pece=fopen("C:\\Users\\HP\\Documents\\ecestudents.txt","w");
+    pcse=fopen("C:\\Users\\HP\\Documents\\csetudents.txt","w");
+    pds=fopen("C:\\Users\\HP\\Documents\\dsstudents.txt","w");
+    pbtechit=fopen("C:\\Users\\HP\\Documents\\btechitstudents.txt","w");
+    pcivil=fopen("C:\\Users\\HP\\Documents\\civilstudents.txt","w");
+    pmech=fopen("C:\\Users\\HP\\Documents\\mechstudents.txt","w");
+    pmetro=fopen("C:\\Users\\HP\\Documents\\metrostudents.txt","w");
+
+    fprintf(peee,"final student list");
+    fprintf(pece,"final student list");
+    fprintf(pcse,"final student list");
+    fprintf(pds,"final student list");
+    fprintf(pbtechit,"final student list");
+    fprintf(pcivil,"final student list");
+    fprintf(pmech,"final student list");
+    fprintf(pmetro,"final student list");
+
+    for(i=0;i<80;i++)
+     {
+         fprintf(peee,"%s",s.eee[i]);
+         fprintf(pece,"%s",s.eee[i]);
+         fprintf(pcse,"%s",s.eee[i]);
+         fprintf(pds,"%s",s.eee[i]);
+         fprintf(pbtechit,"%s",s.eee[i]);
+         fprintf(pcivil,"%s",s.eee[i]);
+         fprintf(pmech,"%s",s.eee[i]);
+         fprintf(pmetro,"%s",s.eee[i]);
+     }
+}
+
+int printgirlhostelers()
+{
+    int i;
+    FILE *host;
+    host=fopen("C:\\Users\\HP\\Documents\\girlshostellers.txt","w");
+    for(i=0;i<s.girlhostcount;i++)
+        fprintf(host,"\n %s",s.girl_host[i]);
+
+}
+
+int printboyhostelers()
+{
+    int i;
+    FILE *host;
+    host=fopen("C:\\Users\\HP\\Documents\\boyshostellers.txt","w");
+    for(i=0;i<s.boyhostcount;i++)
+        fprintf(host,"\n %s",s.boy_host[i]);
+
+}
